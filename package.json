@@ -1,13 +1,14 @@
 {
 	"name": "another-project-manager",
 	"displayName": "Another Project Manager",
-	"description": "Just another PM for local and remoter projects",
+	"description": "Just another PM for local and remote projects",
 	"version": "0.0.1",
 	"publisher": "alexbabichev",
 	"author": "Alex Babichev",
+	"repository": "https://github.com/alexbabichev/another-project-manager",
 	"homepage": "https://github.com/alexbabichev/another-project-manager#readme",
 	"license": "MIT",
-	"enableProposedApi": true,
+	"enableProposedApi": false,
 	"engines": {
 		"vscode": "^1.42.0"
 	},
