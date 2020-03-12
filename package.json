@@ -1,0 +1,126 @@
+{
+	"name": "another-project-manager",
+	"displayName": "Another Project Manager",
+	"description": "Just another PM for local and remoter projects",
+	"version": "0.0.1",
+	"publisher": "alexbabichev",
+	"author": "Alex Babichev",
+	"homepage": "https://github.com/alexbabichev/another-project-manager#readme",
+	"license": "MIT",
+	"enableProposedApi": true,
+	"engines": {
+		"vscode": "^1.42.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onView:anotherProjectManager"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "projects-explorer",
+					"title": "Project Explorer",
+					"icon": "media/boxes-solid.svg"
+				}
+			]
+		},
+		"views": {
+			"projects-explorer": [
+				{
+					"id": "anotherProjectManager",
+					"name": ""
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "anotherProjectManager.exitProjects",
+				"title": "Configure",
+				"icon": {
+					"light": "resources/light/configure.svg",
+					"dark": "resources/dark/configure.svg"
+				}
+			},
+			{
+				"command": "anotherProjectManager.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
+			},
+			{
+				"command": "anotherProjectManager.openNewWindow",
+				"title": "Open in new window",
+				"icon": {
+					"light": "resources/light/empty-window.svg",
+					"dark": "resources/dark/empty-window.svg"
+				}
+			},
+			{
+				"command": "anotherProjectManager.deleteEntry",
+				"title": "Delete"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "anotherProjectManager.exitProjects",
+					"when": "view == anotherProjectManager",
+					"group": "navigation"
+				},
+				{
+					"command": "anotherProjectManager.refreshEntry",
+					"when": "view == anotherProjectManager",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "anotherProjectManager.openNewWindow",
+					"when": "view == anotherProjectManager && viewItem == project",
+					"group": "inline"
+				},
+				{
+					"command": "anotherProjectManager.deleteEntry",
+					"when": "view == anotherProjectManager && viewItem == dependency"
+				}
+			]
+		},
+		"configuration": [
+			{
+				"title": "Another Project Manager",
+				"properties": {
+					"anotherProjectManager.projectsLocation": {
+						"type": "string",
+						"default": "",
+						"description": "Indicates an alternative location where the `projects.json` file is stored"
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/mkdirp": "^0.5.2",
+		"@types/node": "^10.12.21",
+		"@types/rimraf": "^2.0.2",
+		"@types/vscode": "^1.42.0",
+		"typescript": "^3.5.1",
+		"tslint": "^5.12.1"
+	},
+	"dependencies": {
+		"jsonc-parser": "^0.4.2",
+		"ftp": "^0.3.10",
+		"mkdirp": "^0.5.1",
+		"rimraf": "^2.6.2"
+	}
+}
