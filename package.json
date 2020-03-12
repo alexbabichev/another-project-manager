@@ -7,7 +7,7 @@
 	"author": "Alex Babichev",
 	"repository": "https://github.com/alexbabichev/another-project-manager",
 	"homepage": "https://github.com/alexbabichev/another-project-manager#readme",
-	"icon": "https://github.com/alexbabichev/another-project-manager/raw/master/images/logo.png",
+	"icon": "images/logo.png",
 	"license": "MIT",
 	"enableProposedApi": false,
 	"engines": {
