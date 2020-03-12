@@ -1,6 +1,6 @@
 # Another Project Manager
 
-![Screen](images/screenshot.png)
+![Screen](images/screenshot.jpg)
 
 **Project Manager** is an extension created for **Visual Studio Code**. If you find it useful, please consider supporting it.
 
