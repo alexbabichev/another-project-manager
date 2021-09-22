@@ -4,12 +4,13 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import { env } from "vscode";
-import { ProjectGroup } from './interfaces';
+import { ProjectNode } from './interfaces';
 
 const homeDir = os.homedir();
 const projectsFile = 'projects.json';
 
-export function getProjectFilePath(): string {
+export function getProjectFilePath(): string
+{
 	const configuration = vscode.workspace.getConfiguration('anotherProjectManager');
 	const projectsLocation: string = configuration.get<string>('projectsLocation');
 	
@@ -53,7 +54,7 @@ export function getChannelPath(): string {
 		: env.appName.replace('Visual Studio ', '');
 }
 
-export function loadProjects(filename: string): ProjectGroup[] {
+export function loadProjects(filename: string): ProjectNode[] {
 	if (!fs.existsSync(filename)) return [];
 
 	try {
@@ -72,4 +73,10 @@ export function loadProjects(filename: string): ProjectGroup[] {
 
 		return [];
 	}
+}
+
+export function saveProjects(filename: string, projects: ProjectNode[])
+{
+	const items = JSON.stringify(projects, null, 4);
+	fs.writeFileSync(filename, items);
 }

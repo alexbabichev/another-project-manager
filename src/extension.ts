@@ -39,6 +39,65 @@ export function activate(context: vscode.ExtensionContext) {
 		);
 	});
 
+	vscode.commands.registerCommand("anotherProjectManager.deleteEntry", async (v: Dependency) =>
+	{
+		const result = await vscode.window.showWarningMessage(`Really delete ${v.node.title}?`, "Yes, Delete", "No, Cancel");
+		if (result == "Yes, Delete")
+		{
+			anotherProjectManagerProvider.remove(v);
+		}
+	});
+
+	vscode.commands.registerCommand("anotherProjectManager.createProjectGroup", async (v: Dependency) =>
+	{
+		const result = await vscode.window.showInputBox({
+			
+			placeHolder: 'Name of new Group',
+		});
+
+		if (result != undefined)
+		{
+			anotherProjectManagerProvider.addGroup(result, v);
+		}
+	});
+
+	vscode.commands.registerCommand("anotherProjectManager.createProject", async (v: Dependency) =>
+	{
+		const result = await vscode.window.showInputBox({
+			
+			placeHolder: 'Name of new project',
+		});
+
+		if (result == undefined)
+		{
+			return;
+		}
+		
+		const folderpaths = await vscode.window.showOpenDialog({ canSelectFiles: false, canSelectFolders: true, canSelectMany: false, openLabel: "Select Folder", title: "Select Folder" });
+		if (folderpaths == undefined)
+		{
+			return;
+		}
+		anotherProjectManagerProvider.addProject(result, folderpaths[0], v);
+
+	});
+
+	vscode.commands.registerCommand("anotherProjectManager.rename", async (v: Dependency) =>
+	{
+		const result = await vscode.window.showInputBox({
+			value: v.node.title,
+			placeHolder: 'Rename',
+		});
+
+		if (result == undefined)
+		{
+			return;
+		}
+		
+		anotherProjectManagerProvider.rename(result, v);
+
+	});
+
 	fs.watchFile(getProjectFilePath(), { interval: 100 }, () => {
 		anotherProjectManagerProvider.refresh();
 	});

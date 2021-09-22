@@ -1,13 +1,9 @@
 
-export interface ProjectGroup {
-	title: string;
-	type?: string;
+export interface ProjectNode
+{
+	title: string,
+	type?: string,
+	path?: string,
 	description?: string;
-	nodes: Project[] | ProjectGroup[];
-}
-
-export interface Project {
-	title: string;
-	description?: string;
-	path: string;
+	nodes?: ProjectNode[];
 }

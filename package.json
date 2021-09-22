@@ -66,6 +66,18 @@
 			{
 				"command": "anotherProjectManager.deleteEntry",
 				"title": "Delete"
+			},
+			{
+				"command": "anotherProjectManager.createProjectGroup",
+				"title": "Create Group"
+			},
+			{
+				"command": "anotherProjectManager.createProject",
+				"title": "Create Project"
+			},
+			{
+				"command": "anotherProjectManager.rename",
+				"title": "Rename"
 			}
 		],
 		"menus": {
@@ -88,8 +100,33 @@
 					"group": "inline"
 				},
 				{
+					"command": "anotherProjectManager.openNewWindow",
+					"when": "view == anotherProjectManager && viewItem == project"
+				},
+				{
+					"command": "anotherProjectManager.createProject",
+					"when": "view == anotherProjectManager && viewItem == dependency"
+				},
+				{
+					"command": "anotherProjectManager.createProjectGroup",
+					"when": "view == anotherProjectManager && viewItem == dependency"
+				},
+				
+				{
+					"command": "anotherProjectManager.rename",
+					"when": "view == anotherProjectManager && viewItem == project"
+				},
+				{
+					"command": "anotherProjectManager.rename",
+					"when": "view == anotherProjectManager && viewItem == dependency"
+				},
+				{
 					"command": "anotherProjectManager.deleteEntry",
 					"when": "view == anotherProjectManager && viewItem == dependency"
+				},
+				{
+					"command": "anotherProjectManager.deleteEntry",
+					"when": "view == anotherProjectManager && viewItem == project"
 				}
 			]
 		},
