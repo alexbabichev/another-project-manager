@@ -64,10 +64,6 @@
 				}
 			},
 			{
-				"command": "anotherProjectManager.deleteEntry",
-				"title": "Delete"
-			},
-			{
 				"command": "anotherProjectManager.createProjectGroup",
 				"title": "Create Group"
 			},
@@ -78,6 +74,10 @@
 			{
 				"command": "anotherProjectManager.rename",
 				"title": "Rename"
+			},
+			{
+				"command": "anotherProjectManager.deleteEntry",
+				"title": "Delete"
 			}
 		],
 		"menus": {
@@ -101,32 +101,39 @@
 				},
 				{
 					"command": "anotherProjectManager.openNewWindow",
-					"when": "view == anotherProjectManager && viewItem == project"
+					"when": "view == anotherProjectManager && viewItem == project",
+					"group": "context@1"
 				},
 				{
 					"command": "anotherProjectManager.createProject",
-					"when": "view == anotherProjectManager && viewItem == dependency"
+					"when": "view == anotherProjectManager && viewItem == dependency",
+					"group": "context@1"
 				},
 				{
 					"command": "anotherProjectManager.createProjectGroup",
-					"when": "view == anotherProjectManager && viewItem == dependency"
-				},
-				
-				{
-					"command": "anotherProjectManager.rename",
-					"when": "view == anotherProjectManager && viewItem == project"
+					"when": "view == anotherProjectManager && viewItem == dependency",
+					"group": "context@2"
 				},
 				{
 					"command": "anotherProjectManager.rename",
-					"when": "view == anotherProjectManager && viewItem == dependency"
+					"when": "view == anotherProjectManager && viewItem == project",
+					"group": "context@2"
+				},
+				{
+					"command": "anotherProjectManager.rename",
+					"when": "view == anotherProjectManager && viewItem == dependency",
+					"group": "context@3"
+
 				},
 				{
 					"command": "anotherProjectManager.deleteEntry",
-					"when": "view == anotherProjectManager && viewItem == dependency"
+					"when": "view == anotherProjectManager && viewItem == dependency",
+					"group": "context@4"
 				},
 				{
 					"command": "anotherProjectManager.deleteEntry",
-					"when": "view == anotherProjectManager && viewItem == project"
+					"when": "view == anotherProjectManager && viewItem == project",
+					"group": "context@3"
 				}
 			]
 		},
