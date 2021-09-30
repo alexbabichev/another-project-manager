@@ -2,6 +2,8 @@
 
 import * as vscode from 'vscode';
 import * as fs from 'fs';
+import * as path from 'path';
+
 
 import { ProjectsNodeProvider, Dependency } from './anotherProjectManager';
 import { getProjectFilePath } from './pathUtil';
@@ -63,8 +65,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand("anotherProjectManager.createProject", async (v: Dependency) =>
 	{
+		
+		const folderpaths = await vscode.window.showOpenDialog({ canSelectFiles: false, canSelectFolders: true, canSelectMany: false, openLabel: "Select Folder", title: "Select Folder" });
+		if (folderpaths == undefined)
+		{
+			return;
+		}
+
+		const basename = path.posix.basename(folderpaths[0].path);
+
 		const result = await vscode.window.showInputBox({
-			
+			value: basename,
 			placeHolder: 'Name of new project',
 		});
 
@@ -73,11 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 		
-		const folderpaths = await vscode.window.showOpenDialog({ canSelectFiles: false, canSelectFolders: true, canSelectMany: false, openLabel: "Select Folder", title: "Select Folder" });
-		if (folderpaths == undefined)
-		{
-			return;
-		}
+		
 		anotherProjectManagerProvider.addProject(result, folderpaths[0], v);
 
 	});
