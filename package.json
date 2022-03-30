@@ -9,9 +9,9 @@
 	"homepage": "https://github.com/alexbabichev/another-project-manager#readme",
 	"icon": "images/logo.png",
 	"license": "MIT",
-	"enableProposedApi": false,
+	"enabledApiProposals": [],
 	"engines": {
-		"vscode": "^1.42.0"
+		"vscode": "^1.66.0"
 	},
 	"categories": [
 		"Other"
@@ -123,7 +123,6 @@
 					"command": "anotherProjectManager.rename",
 					"when": "view == anotherProjectManager && viewItem == dependency",
 					"group": "context@3"
-
 				},
 				{
 					"command": "anotherProjectManager.deleteEntry",
@@ -155,17 +154,17 @@
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./"
 	},
+	"types": ["vscode.d.ts"],
 	"devDependencies": {
 		"@types/mkdirp": "^0.5.2",
 		"@types/node": "^10.12.21",
 		"@types/rimraf": "^2.0.2",
-		"@types/vscode": "^1.42.0",
-		"typescript": "^3.5.1",
-		"tslint": "^5.12.1"
+		"tslint": "^5.12.1",
+		"typescript": "^3.5.1"
 	},
 	"dependencies": {
-		"jsonc-parser": "^0.4.2",
 		"ftp": "^0.3.10",
+		"jsonc-parser": "^0.4.2",
 		"mkdirp": "^0.5.1",
 		"rimraf": "^2.6.2"
 	}

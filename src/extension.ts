@@ -10,10 +10,12 @@ import { getProjectFilePath } from './pathUtil';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	const anotherProjectManagerProvider = new ProjectsNodeProvider(vscode.workspace.rootPath);
+	const rootPath = (vscode.workspace.workspaceFolders && (vscode.workspace.workspaceFolders.length > 0))
+		? vscode.workspace.workspaceFolders[0].uri.fsPath : undefined;
+	const anotherProjectManagerProvider = new ProjectsNodeProvider(context, rootPath);
 
-	vscode.window.registerTreeDataProvider('anotherProjectManager', anotherProjectManagerProvider);
-	
+	// vscode.window.registerTreeDataProvider('anotherProjectManager', anotherProjectManagerProvider);
+
 	vscode.commands.registerCommand('anotherProjectManager.refreshEntry', () => anotherProjectManagerProvider.refresh());
 	
 	vscode.commands.registerCommand('extension.open', (path: string) => {
@@ -105,7 +107,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	});
 
-	fs.watchFile(getProjectFilePath(), { interval: 100 }, () => {
-		anotherProjectManagerProvider.refresh();
-	});
+	// fs.watchFile(getProjectFilePath(), { interval: 100 }, () => {
+	// 	anotherProjectManagerProvider.refresh();
+	// });
 }

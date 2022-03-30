@@ -58,8 +58,8 @@ export function loadProjects(filename: string): ProjectNode[] {
 	if (!fs.existsSync(filename)) return [];
 
 	try {
-		const items = JSON.parse(fs.readFileSync(filename).toString());
-		
+		const items = JSON.parse(fs.readFileSync(filename).toString()) as ProjectNode[];
+		addTypes(items);
 		return items;
 	} catch (error) {
 		const optionOpenFile: vscode.MessageItem = { title: 'Open File' };
@@ -79,4 +79,25 @@ export function saveProjects(filename: string, projects: ProjectNode[])
 {
 	const items = JSON.stringify(projects, null, 4);
 	fs.writeFileSync(filename, items);
+}
+
+
+function addTypes(items: ProjectNode[])
+{
+	for(let i in items)
+	{
+		if(!items[i].type)
+		{
+			items[i].type = "project";
+		}
+		else if(items[i].type == "local")
+		{
+			items[i].type = "group";
+		}
+
+		if(items[i].nodes)
+		{
+			addTypes(items[i].nodes);
+		}
+	}
 }
